@@ -1,7 +1,32 @@
 cmake_minimum_required(VERSION 3.12)
 
+
+# Disable picotool-based UF2 conversion; use elf2uf2 instead
+set(PICO_NO_PICOTOOL 1)
+
+# Resolve PICO_SDK_PATH:
+#  - prefer an explicit CMake cache value (-DPICO_SDK_PATH=...)
+#  - otherwise fall back to the environment (export PICO_SDK_PATH=...)
+if (DEFINED PICO_SDK_PATH)
+    # Already defined via -D or CMakeCache.txt → do nothing
+elseif (DEFINED ENV{PICO_SDK_PATH})
+    # Defined in the environment → import into the CMake cache
+    set(CACHE{PICO_SDK_PATH}
+            TYPE PATH
+            HELP "Path to the Raspberry Pi Pico SDK"
+            VALUE "$ENV{PICO_SDK_PATH}"
+    )
+else()
+    message(FATAL_ERROR
+            "PICO_SDK_PATH is not set.\n"
+            "Set it with -DPICO_SDK_PATH=/path/to/pico-sdk\n"
+            "or export PICO_SDK_PATH in your environment."
+    )
+endif()
+
 #set(PICO_PLATFORM host)
-include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+#include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
 project(scoppy)
 
