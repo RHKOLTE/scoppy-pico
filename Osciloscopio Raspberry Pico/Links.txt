@@ -1,0 +1,4 @@
+Github do projeto: 	https://github.com/fhdm-dev/scoppy
+Guia de instalação Firmware: https://oscilloscope.fhdm.xyz/wiki/firmware-versions
+Site FHDM: https://store.fhdm.xyz/fscope-500k-kit
+Drive com os arquivos do projeto Manual Maker: https://drive.google.com/drive/folders/1ggc9awYUo9gqTZQCbd_n16hznm7G7kIi
